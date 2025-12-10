@@ -13,7 +13,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-
+import {GraduationCap} from 'lucide-react'
 import type { UserRole } from "@/lib/type"
 import { navItems } from "./nav-items"
 
@@ -23,7 +23,15 @@ export function AppSidebar({ role }: { role: UserRole }) {
 
   return (
     <>
+     {/* Logo */}
+      
       <Sidebar>
+        <div className="flex h-16 items-center gap-2 border-b border-border px-4! py-3!">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
+          <GraduationCap className="h-5 w-5 text-primary-foreground" />
+        </div>
+        <span className="text-lg font-semibold text-foreground">EduManage</span>
+      </div>
       <SidebarContent className="py-6 px-4 flex flex-col gap-6">
 
         <SidebarGroup>
