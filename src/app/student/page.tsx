@@ -1,9 +1,11 @@
 import React from 'react'
-
-const studentpage = () => {
+import DashboardLayout  from "@/components/layout/dashboard-layout"
+const StudentDashboard = () => {
   return (
-    <div >studentpage</div>
+   <DashboardLayout>
+    <h1 className="text-3xl font-bold">Welcome, Emma!</h1>
+   </DashboardLayout>
   )
 }
 
-export default studentpage
+export default StudentDashboard
