@@ -45,7 +45,7 @@ export default function StudentGradesPage() {
     <DashboardLayout>
       <div className="space-y-6! px-6!">
         <div>
-          <h1 className="text-3xl font-bold">My Grades</h1>
+          <h1 className="text-3xl font-bold mt-6!">My Grades</h1>
           <p className="text-muted-foreground">View your academic performance and grades</p>
         </div>
 
@@ -105,8 +105,8 @@ export default function StudentGradesPage() {
           data-[state=active]:border-gray-300
           data-[state=active]:shadow-sm
           rounded-xl
-          px-4
-          py-2
+          px-4!
+          py-2!
           transition
         "
       >
