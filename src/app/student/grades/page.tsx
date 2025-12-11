@@ -92,62 +92,98 @@ export default function StudentGradesPage() {
         </div>
 
         {/* Grades by Subject */}
-        <Tabs defaultValue="Mathematics" className="space-y-4">
-          <TabsList className="flex-wrap">
-            {Object.keys(gradesBySubject).map((subject) => (
-              <TabsTrigger key={subject} value={subject}>
-                {subject}
-              </TabsTrigger>
-            ))}
-          </TabsList>
+       <Tabs defaultValue="Mathematics" className="space-y-4! px-4!">
+  <TabsList className="flex-wrap gap-3! bg-gray-100 p-2! rounded-xl">
+    {Object.keys(gradesBySubject).map((subject) => (
+      <TabsTrigger
+        key={subject}
+        value={subject}
+        className="
+          data-[state=active]:bg-white
+          data-[state=active]:text-black
+          data-[state=active]:border
+          data-[state=active]:border-gray-300
+          data-[state=active]:shadow-sm
+          rounded-xl
+          px-4
+          py-2
+          transition
+        "
+      >
+        {subject}
+      </TabsTrigger>
+    ))}
+  </TabsList>
+
+
 
           {Object.entries(gradesBySubject).map(([subject, grades]) => (
-            <TabsContent key={subject} value={subject}>
-              <Card className="bg-card">
-                <CardHeader>
-                  <CardTitle>{subject} Grades</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Table>
-                    <TableHeader>
-                      <TableRow className="bg-secondary/50!">
-                        <TableHead>Assessment</TableHead>
-                        <TableHead className="text-center">Max Marks</TableHead>
-                        <TableHead className="text-center">Obtained</TableHead>
-                        <TableHead className="text-center">Percentage</TableHead>
-                        <TableHead className="text-center">Grade</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {grades.map((grade, index) => (
-                        <TableRow key={index}>
-                          <TableCell className="font-medium">{grade.exam}</TableCell>
-                          <TableCell className="text-center">{grade.maxMarks}</TableCell>
-                          <TableCell className="text-center">{grade.obtained}</TableCell>
-                          <TableCell className="text-center">
-                            {Math.round((grade.obtained / grade.maxMarks) * 100)}%
-                          </TableCell>
-                          <TableCell className="text-center">
-                            <Badge
-                              className={
-                                grade.grade.startsWith("A")
-                                  ? "bg-accent"
-                                  : grade.grade.startsWith("B")
-                                    ? "bg-primary"
-                                    : "bg-chart-3"
-                              }
-                            >
-                              {grade.grade}
-                            </Badge>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          ))}
+  <TabsContent key={subject} value={subject}>
+    <Card className="bg-card border rounded-xl shadow-sm px-6! mb-6!">
+      <CardHeader className="px-6! pt-6!">
+        <CardTitle className="text-xl font-semibold">{subject} Grades</CardTitle>
+      </CardHeader>
+
+      <CardContent className="px-6! pb-6!">
+        <div className="overflow-hidden rounded-xl border">
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-gray-100/60">
+                <TableHead className="py-4! ">Assessment</TableHead>
+                <TableHead className="text-center py-4!">Max Marks</TableHead>
+                <TableHead className="text-center py-4!">Obtained</TableHead>
+                <TableHead className="text-center py-4!">Percentage</TableHead>
+                <TableHead className="text-center py-4!">Grade</TableHead>
+              </TableRow>
+            </TableHeader>
+
+            <TableBody className="px-4!">
+              {grades.map((grade, index) => {
+                const percent = Math.round((grade.obtained / grade.maxMarks) * 100);
+
+                return (
+                  <TableRow
+                    key={index}
+                    className="transition hover:bg-gray-50!"
+                  >
+                    <TableCell className="font-medium py-4!">
+                      {grade.exam}
+                    </TableCell>
+
+                    <TableCell className="text-center">{grade.maxMarks}</TableCell>
+                    <TableCell className="text-center">{grade.obtained}</TableCell>
+
+                    <TableCell className="text-center font-medium">
+                      {percent}%
+                    </TableCell>
+
+                    <TableCell className="text-center">
+                      <Badge
+                        className={`
+                          text-white px-3 py-1! rounded-full
+                          ${
+                            grade.grade.startsWith("A")
+                              ? "bg-green-500"
+                              : grade.grade.startsWith("B")
+                                ? "bg-blue-500"
+                                : "bg-red-500"
+                          }
+                        `}
+                      >
+                        {grade.grade}
+                      </Badge>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </div>
+      </CardContent>
+    </Card>
+  </TabsContent>
+))}
+
         </Tabs>
       </div>
     </DashboardLayout>
