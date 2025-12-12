@@ -29,7 +29,71 @@ const announcements = [
 const StudentDashboard = () => {
   return (
    <DashboardLayout>
-    <h1 className="text-3xl font-bold">Welcome, Emma!</h1>
+    
+    <div className='space-y-6!'>
+      <div>
+          <h1 className="text-3xl font-bold">Welcome, Emma!</h1>
+          <p className="text-muted-foreground">Grade 9-A • Roll Number: STU001</p>
+        </div>
+        {/* Quick stats */}
+        <div className='grid md:grid-cols-4 gap-3!'>
+          <Card className='bg-card'>
+            <CardContent className='p-4!'>
+              <div className='flex items-center gap-3!'>
+                <div className='rounded-lg bg-primary/10 p-2!'>
+                    <TrendingUp className="h-5! w-5! text-primary" />
+                </div>
+                  <div>
+                  <p className="text-2xl font-bold">3.8</p>
+                  <p className="text-sm text-muted-foreground">Current GPA</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className='bg-card'>
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3">
+                <div className="rounded-lg bg-accent/10 p-2!">
+                  <Calendar className="h-5! w-5! text-accent" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">94%</p>
+                  <p className="text-sm text-muted-foreground">Attendance</p>
+                </div>
+              </div>
+            </CardContent>
+
+          </Card>
+          <Card className="bg-card">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3">
+                <div className="rounded-lg bg-chart-3/10 p-2">
+                  <BookOpen className="h-5 w-5 text-chart-3" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">5</p>
+                  <p className="text-sm text-muted-foreground">Subjects</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="bg-card">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3">
+                <div className="rounded-lg bg-chart-5/10 p-2">
+                  <Award className="h-5 w-5 text-chart-5" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">12</p>
+                  <p className="text-sm text-muted-foreground">Rank in Class</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+        </div>
+
+    </div>
    </DashboardLayout>
   )
 }
