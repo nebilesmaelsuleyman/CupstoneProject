@@ -26,8 +26,8 @@ export function AppSidebar({ role }: { role: UserRole }) {
      {/* Logo */}
       
       <Sidebar>
-        <div className="flex h-16 items-center gap-2 border-b border-border px-4! py-3!">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
+        <div className="flex h-16 items-center gap-2! border-b border-border px-4! ">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary ">
           <GraduationCap className="h-5 w-5 text-primary-foreground" />
         </div>
         <span className="text-lg font-semibold text-foreground">EduManage</span>
@@ -38,7 +38,7 @@ export function AppSidebar({ role }: { role: UserRole }) {
 
 
           <SidebarGroupContent>
-            <SidebarMenu className="flex flex-col py-3 gap-1">
+            <SidebarMenu className="flex flex-col py-3! gap-1!">
 
               {items.map((item) => {
                 const active = pathname.startsWith(item.href)
@@ -52,7 +52,7 @@ export function AppSidebar({ role }: { role: UserRole }) {
                         className={cn(
                           // OVERRIDE default padding and fonts
                           "px-5! py-5! text-[15px]! font-semibold!",
-                          "flex items-center gap-3 rounded-lg",
+                          "flex items-center gap-3! rounded-lg",
                           "transition-all duration-200",
                           "hover:bg-gray-100 hover:text-black",
 

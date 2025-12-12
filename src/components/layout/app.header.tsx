@@ -21,7 +21,7 @@ export function AppHeader() {
   // if (!user) return null
 
   return (
-    <header className="flex h-16 items-center justify-between border-b border-border bg-card  px-6! ">
+    <header className="flex h-16 items-center justify-between border-b border-border bg-card  px-6!  py-6! ">
       {/* Search */}
       <div className="relative w-96">
         <Search className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground " />
