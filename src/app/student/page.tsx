@@ -30,7 +30,7 @@ const StudentDashboard = () => {
   return (
    <DashboardLayout>
     
-    <div className='space-y-6!'>
+    <div className='space-y-6! px-6!'>
       <div>
           <h1 className="text-3xl font-bold">Welcome, Emma!</h1>
           <p className="text-muted-foreground">Grade 9-A • Roll Number: STU001</p>
@@ -92,6 +92,64 @@ const StudentDashboard = () => {
           </Card>
 
         </div>
+        <div className='grid gap-6 lg:grid-cols-3'>
+          {/* todays schedule */}
+          <Card className='bg-card lg:col-span-2'>
+              <CardHeader className="flex flex-row items-center justify-between">
+              <CardTitle className='py-4! px-6!'>Today&apos;s Schedule</CardTitle>
+              <Badge variant="outline" className='p-2!'>
+                <Clock className="mr-1 h-4! w-4!" />
+                {new Date().toLocaleDateString("en-US", { weekday: "long" })}
+              </Badge>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3!">
+                {studentSchedule.map((cls, index) => (
+                  <div key={index} className="flex items-center justify-between rounded-lg border border-border p-3!">
+                    <div className="flex items-center gap-4">
+                      <div className="text-center min-w-[60px]">
+                        <p className="text-xs font-medium">{cls.time.split(" - ")[0]}</p>
+                        <p className="text-xs text-muted-foreground">{cls.time.split(" - ")[1]}</p>
+                      </div>
+                      <div className="h-8! w-px bg-border" />
+                      <div>
+                        <p className="font-medium">{cls.subject}</p>
+                        <p className="text-sm text-muted-foreground">{cls.teacher}</p>
+                      </div>
+                    </div>
+                    <Badge variant="secondary">{cls.room}</Badge>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+          {/* Announcements */}
+          <Card className="bg-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Bell className="h-5! w-5! py-4! " />
+                    Announcement
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4!">
+                {announcements.map((item, index) => (
+                  <div key={index} className="space-y-2! px-5!">
+                    <div className="flex items-center justify-between">
+                      <p className="font-medium text-sm">{item.title}</p>
+                      <Badge variant="outline" className="text-xs h-6! w-15! px-5!">
+                        {item.type}
+                      </Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground">{item.date}</p>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+        </div>
+
 
     </div>
    </DashboardLayout>
