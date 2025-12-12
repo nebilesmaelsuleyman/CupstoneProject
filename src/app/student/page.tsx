@@ -149,6 +149,42 @@ const StudentDashboard = () => {
           </Card>
 
         </div>
+        <div className='grid gap-6! lg:grid-cols-2'>
+          {/* Recent grades */}
+           <Card className="bg-card mb-6!">
+            <CardHeader>
+              <CardTitle className='px-6! py-6!'>Recent Grades</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4! px-4! mb-5!">
+                {recentGrades.map((item, index) => (
+                  <div key={index} className="flex items-center justify-between rounded-lg border border-border p-3!">
+                    <div>
+                      <p className="font-medium">{item.subject}</p>
+                      <p className="text-sm text-muted-foreground">{item.exam}</p>
+                    </div>
+                    <div className="text-right">
+                      <Badge
+                        className={
+                          item.grade.startsWith("A")
+                            ? "bg-green-500 w-6! h-5!"
+                            : item.grade.startsWith("B")
+                              ? "bg-primary  w-6! h-5!"
+                              : "bg-chart-3"
+                        }
+                      >
+                        {item.grade}
+                      </Badge>
+                      <p className="text-sm text-muted-foreground mt-1">{item.marks} marks</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+
+        </div>
 
 
     </div>
