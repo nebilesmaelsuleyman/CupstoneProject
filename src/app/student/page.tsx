@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import DashboardLayout  from "@/components/layout/dashboard-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -149,7 +151,7 @@ const StudentDashboard = () => {
           </Card>
 
         </div>
-        <div className='grid gap-6! lg:grid-cols-2'>
+        <div className='grid gap-6! lg:grid-cols-2 py-6!'>
           {/* Recent grades */}
            <Card className="bg-card mb-6!">
             <CardHeader>
@@ -182,11 +184,29 @@ const StudentDashboard = () => {
               </div>
             </CardContent>
           </Card>
+                {/* Performance Chart */}
+                <Card className='bg-card'>
+                  <CardHeader>
+                    <CardTitle className='px-6! py-6!'>
+                      Subject Performance
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className='h-[250px]'>
+                      <ResponsiveContainer width='100%' height='100%'>
+                        <RadarChart data={performanceData}>
+                         <PolarGrid stroke='hsl(var(--border))'/>
+                         <PolarAngleAxis dataKey="subject" stroke="hsl(var(--muted-foreground))" fontSize={11} />
+                         <PolarRadiusAxis stroke="hsl(var(--muted-foreground))" fontSize={10} />
+                          <Radar name="Score" dataKey="average" stroke="hsl(var(--secondary))" fill="hsl(var(--secondary)/0.3)" />
+                        </RadarChart>
+                      </ResponsiveContainer>
 
+                    </div>
+                  </CardContent>
 
+                </Card>
         </div>
-
-
     </div>
    </DashboardLayout>
   )
