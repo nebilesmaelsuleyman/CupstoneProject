@@ -1,9 +1,10 @@
+'use client'
 import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import DashboardLayout from '@/components/layout/dashboard-layout'
 import { Calendar, CheckCircle, XCircle, Clock, TrendingUp } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-
+import StatCard from '@/components/layout/StatCard'
 const attendanceStats = {
   totalDays: 120,
   present: 113,
@@ -40,74 +41,47 @@ const Attendance = () => {
                 <p className='text-muted-foreground'>View your attendance record and statistics</p>
             </div>
             {/* cards */}
-            <div className='grid lg:grid-cols-5 md:grid-cols-3 gap-3 px-6!'>
-                <Card className='bg-card'>
-                    <CardContent className='px-2! py-8!'>
-                        <div className='flex items-center gap-3'>
-                                <div className='rounded-lg bg-primary/10 p-3!  '>
-                                <Calendar className=' h-5! w-5! text-primary text-center'/>
-                                </div>
-                                <div className=''>
-                                   <p className='text-2xl font-bold'>{attendanceStats.totalDays}</p>
-                                <p className='text-muted-foreground text-sm'>school days</p>
-                                </div>     
-                        </div>
-                    </CardContent>
-                </Card>
-                <Card className='bg-card'>
-                    <CardContent className='px-2! py-8!'>
-                        <div className='flex items-center gap-3'>
-                                <div className='rounded-lg bg-primary/10 p-3!  '>
-                                <CheckCircle className=' h-5! w-5! text-accent text-center'/>
-                                </div>
-                                <div className=''>
-                                   <p className='text-2xl font-bold'>{attendanceStats.present}</p>
-                                <p className='text-muted-foreground text-sm'>Present</p>
-                                </div>     
-                        </div>
-                    </CardContent>
-                </Card>
-                <Card className='bg-card'>
-                    <CardContent className='px-2! py-8!'>
-                        <div className='flex items-center gap-3'>
-                                <div className='rounded-lg bg-primary/10 p-3!  '>
-                                <XCircle className=' h-5! w-5! text-destructive text-center'/>
-                                </div>
-                                <div className=''>
-                                   <p className='text-2xl font-bold'>{attendanceStats.absent}</p>
-                                <p className='text-muted-foreground text-sm'> absent</p>
-                                </div>     
-                        </div>
-                    </CardContent>
-                </Card>
-                <Card className='bg-card'>
-                    <CardContent className='px-2! py-8!'>
-                        <div className='flex items-center gap-3'>
-                                <div className='rounded-lg bg-primary/10 p-3!  '>
-                                <Clock className=' h-5! w-5! text-chart-3 text-center'/>
-                                </div>
-                                <div className=''>
-                                   <p className='text-2xl font-bold'>{attendanceStats.late}</p>
-                                <p className='text-muted-foreground text-sm'>late</p>
-                                </div>     
-                        </div>
-                    </CardContent>
-                </Card>
-                <Card className='bg-card'>
-                    <CardContent className='px-2! py-8!'>
-                        <div className='flex items-center gap-3'>
-                                <div className='rounded-lg bg-primary/10 p-3!  '>
-                                <TrendingUp className=' h-5! w-5! text-primary text-center'/>
-                                </div>
-                                <div className=''>
-                                   <p className='text-2xl font-bold'>{attendanceStats.rate}</p>
-                                <p className='text-muted-foreground text-sm'>Attendance RAte</p>
-                                </div>     
-                        </div>
-                    </CardContent>
-                </Card>
-                
-            </div>
+            <div className="grid lg:grid-cols-5 md:grid-cols-3 gap-3 px-6">
+  <StatCard
+    title="School Days"
+    value={attendanceStats.totalDays}
+    icon={Calendar}
+    iconBgClass="bg-primary/10"
+    iconColorClass="text-primary"
+  />
+
+  <StatCard
+    title="Present"
+    value={attendanceStats.present}
+    icon={CheckCircle}
+    iconBgClass="bg-accent/10"
+    iconColorClass="text-accent"
+  />
+
+  <StatCard
+    title="Absent"
+    value={attendanceStats.absent}
+    icon={XCircle}
+    iconBgClass="bg-destructive/10"
+    iconColorClass="text-destructive"
+  />
+
+  <StatCard
+    title="Late"
+    value={attendanceStats.late}
+    icon={Clock}
+    iconBgClass="bg-chart-3/10"
+    iconColorClass="text-chart-3"
+  />
+
+  <StatCard
+    title="Attendance Rate"
+    value={`${attendanceStats.rate}%`}
+    icon={TrendingUp}
+    iconBgClass="bg-primary/10"
+    iconColorClass="text-primary"
+  />
+</div>
             <div className='grid gap-6 lg:grid-cols-2'>
               {/* monthly breakdown */}
               <Card className='bg-card'>
