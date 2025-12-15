@@ -13,6 +13,7 @@ const attendanceStats = {
   rate: 94.2,
 }
 
+
 const monthlyAttendance = [
   { month: "September", present: 20, absent: 1, late: 1, total: 22 },
   { month: "October", present: 21, absent: 1, late: 0, total: 22 },

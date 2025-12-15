@@ -15,10 +15,17 @@ import {
 import { Bell, Search, Settings, LogOut, User } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
-export function AppHeader() {
-  // const { user, logout } = useAuth()
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  useUser,
+} from "@clerk/nextjs"
 
-  // if (!user) return null
+export function AppHeader() {
+  const {user}= useUser();
+
 
   return (
     <header className="flex h-16 items-center justify-between border-b border-border bg-card  px-6!  py-6! ">
@@ -29,8 +36,30 @@ export function AppHeader() {
       </div>
 
       {/* Actions */}
+     
+
+      
       <div className="flex items-center gap-4">
+        
+        <SignedOut>
+          <SignInButton mode='modal'>
+            <Button variant='ghost'> sign in</Button>
+          </SignInButton>
+
+          <SignUpButton mode = 'modal'>
+            <Button>
+              Sign UP
+            </Button>
+          </SignUpButton>
+        </SignedOut>
+       
+        
+
+
         {/* Notifications */}
+        <SignedIn>
+
+       
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon" className="relative">
@@ -87,6 +116,7 @@ export function AppHeader() {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+         </SignedIn>
       </div>
     </header>
   )
