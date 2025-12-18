@@ -8,6 +8,9 @@ import { BookOpen, Calendar, Clock, TrendingUp, Award, Bell } from "lucide-react
 import { performanceData } from "@/lib/mock-data"
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer } from "recharts"
 import StatCard from '@/components/layout/StatCard'
+import { useAuth } from '@clerk/nextjs';
+import { useEffect, useState } from 'react';
+
 const studentSchedule = [
   { time: "08:00 - 09:00", subject: "Mathematics", teacher: "Mr. Johnson", room: "Room 101" },
   { time: "09:15 - 10:15", subject: "English", teacher: "Ms. Williams", room: "Room 105" },
@@ -28,13 +31,58 @@ const announcements = [
   { title: "Science Fair Registration", date: "Nov 30", type: "event" },
 ]
 
+
+
 const StudentDashboard = () => {
+  const {getToken}= useAuth();
+  const [user, setUser]=useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(()=>{
+    const fetchuser= async ()=>{
+      try {
+      const token = await getToken();
+      console.log('token', token);
+
+      if (!token) throw new Error('No token');
+
+      const res = await fetch('http://localhost:3000/auth/me', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log('response', res);
+
+      if (!res.ok) throw new Error('Request failed');
+
+      const data = await res.json();
+      console.log('data', data);
+
+      setUser(data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false); // 🔥 THIS WAS MISSING
+    }
+    }
+        fetchuser()
+  },[getToken])
+  
+  if(loading){
+    return <div> Loading ...</div>
+  }
+
+  if (!user) {
+    return <div>User not found</div>;
+  }
+
   return (
    <DashboardLayout>
     
     <div className='space-y-6! px-6!'>
       <div>
-          <h1 className="text-3xl font-bold">Welcome, Emma!</h1>
+          <h1 className="text-3xl font-bold">Welcome, {user.firstName}</h1>
           <p className="text-muted-foreground">Grade 9-A • Roll Number: STU001</p>
         </div>
         {/* Quick stats */}

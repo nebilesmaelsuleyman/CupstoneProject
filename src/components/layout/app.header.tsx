@@ -14,7 +14,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Bell, Search, Settings, LogOut, User } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-
+import { useClerk } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 import {
   SignedIn,
   SignedOut,
@@ -24,7 +25,13 @@ import {
 } from "@clerk/nextjs"
 
 export function AppHeader() {
-  const {user}= useUser();
+  const { signOut } = useClerk();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await signOut();
+    router.push('/');
+  };
 
 
   return (
@@ -110,7 +117,7 @@ export function AppHeader() {
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             {/* add onclick below */}
-            <DropdownMenuItem  className="text-destructive">
+            <DropdownMenuItem onClick={handleLogout} className="text-destructive">
               <LogOut className="mr-2 h-4 w-4" />
               Log out
             </DropdownMenuItem>
